@@ -5,4 +5,4 @@ kill:
 	redis-cli -p 6380 shutdown
 
 cli:
-	redi-cli -p 6380
+	redis-cli -p 6380
