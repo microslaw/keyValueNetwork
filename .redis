@@ -1,0 +1,29 @@
+#ASSUMPTIONS
+mac wont change
+
+#COMPUTERS
+HSET mac:00:1b:23:aa:12:bb ip 192.0.0.1 owner milosz location office os Linux status online
+HSET mac:01:00:11:2d:45:bb ip 192.0.0.2 owner darek location home os Windows status online
+HSET mac:58:1d:00:00:33:ac ip 192.0.0.3 owner michal location office os macOS status offline
+HSET mac:11:22:33:aa:bb:cc ip 192.0.0.4 owner alicja location lab os Linux status online
+HSET mac:44:55:66:dd:ee:ff ip 192.0.0.5 owner tomasz location office os Windows status offline
+HSET mac:77:88:99:aa:bb:cc ip 192.0.0.6 owner kasia location home os Linux status online
+
+#CONNETCIONS
+#milosz
+SADD connections:00:1b:23:aa:12:bb 01:00:11:2d:45:bb 58:1d:00:00:33:ac
+
+#darek
+SADD connections:01:00:11:2d:45:bb 00:1b:23:aa:12:bb 44:55:66:dd:ee:ff
+
+#michal
+SADD connections:58:1d:00:00:33:ac 00:1b:23:aa:12:bb 44:55:66:dd:ee:ff
+
+#alicja
+SADD connections:11:22:33:aa:bb:cc 44:55:66:dd:ee:ff 77:88:99:aa:bb:cc
+
+#tomasz
+SADD connections:44:55:66:dd:ee:ff 11:22:33:aa:bb:cc 01:00:11:2d:45:bb 77:88:99:aa:bb:cc 58:1d:00:00:33:ac
+
+#kasia
+SADD connections:77:88:99:aa:bb:cc 11:22:33:aa:bb:cc 44:55:66:dd:ee:ff
