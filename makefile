@@ -1,13 +1,13 @@
 server:
-	redis-server config_startup/node1.conf &
-	redis-server config_startup/node2.conf &
-	redis-server config_startup/node3.conf &
-	redis-server config_startup/node4.conf &
-	redis-server config_startup/node5.conf &
-	redis-server config_startup/node6.conf &
-	redis-server config_startup/node7.conf &
-	redis-server config_startup/node8.conf &
-	redis-server config_startup/node9.conf &
+	redis-server config_startup/node1.conf > logs/node1.log &
+	redis-server config_startup/node2.conf > logs/node2.log &
+	redis-server config_startup/node3.conf > logs/node3.log &
+	redis-server config_startup/node4.conf > logs/node4.log &
+	redis-server config_startup/node5.conf > logs/node5.log &
+	redis-server config_startup/node6.conf > logs/node6.log &
+	redis-server config_startup/node7.conf > logs/node7.log &
+	redis-server config_startup/node8.conf > logs/node8.log &
+	redis-server config_startup/node9.conf > logs/node9.log &
 	sleep 1
 
 cluster:
@@ -54,7 +54,5 @@ cli:
 list:
 	redis-cli -p 6381 cluster nodes
 
-
 watch:
 	watch -n 1 "date & curl 127.0.0.1:6389 --no-progress-meter"
-
