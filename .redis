@@ -52,4 +52,16 @@ RPUSH failures.end:44:55:66:dd:ee:ff "2024-01-01T02:00:00" "2024-01-02T02:00:00"
 RPUSH failures.start:77:88:99:aa:bb:cc "2024-01-01T01:00:00" "2024-01-02T01:00:00" "2024-01-03T01:00:00" 
 RPUSH failures.end:77:88:99:aa:bb:cc "2024-01-01T02:00:00" "2024-01-02T02:00:00" "2024-01-03T02:00:00" 
 
-#USECASE_1 add failure by ip
+#USECASE_1 change ip without mac address
+WATCH index.mac.by.ip
+HGET index.mac.by.ip 159.199.147.91
+MULTI
+HSET index.mac.by.ip 33.206.125.000 88:94:08:f0:01:fd
+HDEL index.mac.by.ip 159.199.147.91
+HSET mac:88:94:08:f0:01:fd ip 33.206.125.000
+
+PUBLISH computer.logs "IP of computer 88:94:08:f0:01:fd has changed from 159.199.147.91 to 33.206.125.000"
+EXEC
+
+
+SUBSCRIBE computer.logs
